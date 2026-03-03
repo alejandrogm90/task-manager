@@ -8,18 +8,18 @@ from celery import Celery
 
 
 if __name__ == "__main__":
-    if not os.getenv("REDIS_PASSWORD"):
-        print("Error: La variable de entorno REDIS_PASSWORD no está configurada.")
-        sys.exit(1)
     if len(sys.argv) != 2:
         print("Uso: python get_task_info.py <task_id>")
-        sys.exit(2)
+        sys.exit(1)
+
+    # Variables
+    HOST_PI = os.getenv("HOST_PI")
+    PASSWORD = os.getenv("REDIS_PASSWORD")
 
     # Configura la conexión a tu broker Redis con autenticación
-    password = os.getenv("REDIS_PASSWORD")
     app = Celery('tasks',
-                 broker=f'redis://:{password}@localhost:6379/0',
-                 backend=f'redis://:{password}@localhost:6379/0')
+                 broker=f'redis://:{PASSWORD}@{HOST_PI}:6379/0',
+                 backend=f'redis://:{PASSWORD}@{HOST_PI}:6379/0')
 
     # ID de la tarea
     task_id = sys.argv[1]

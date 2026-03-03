@@ -1,16 +1,16 @@
-"""Este módulo define las tareas que se ejecutarán en el servidor utilizando Celery."""
+"""Este módulo define las tareas que se ejecutarán en el servidor a través de Celery."""
 import os
 import subprocess
 
 from celery import Celery
 
 
-# Configurar la conexión a tu broker Redis con autenticación
-password = os.getenv("REDIS_PASSWORD")
-app = Celery('tasks',
-             broker=f'redis://:{password}@localhost:6379/0',
-             backend=f'redis://:{password}@localhost:6379/0'
-             )
+# Variables
+PASSWORD = os.getenv("REDIS_PASSWORD")
+
+# Inicializar la aplicación Celery
+app = Celery('tasks', broker=f'redis://:{PASSWORD}@localhost:6379/0',
+             backend=f'redis://:{PASSWORD}@localhost:6379/0')
 
 
 @app.task

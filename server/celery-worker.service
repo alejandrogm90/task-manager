@@ -1,0 +1,13 @@
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+User=pi  # Cambia esto al usuario que deseas usar
+Group=pi
+WorkingDirectory=/ruta/a/tu/proyecto  # Cambia esto a tu directorio de trabajo
+ExecStart=/usr/bin/celery -A run_worker worker --loglevel=info
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

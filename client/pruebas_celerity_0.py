@@ -29,10 +29,7 @@ if __name__ == "__main__":
 
     # Lista de scripts a enviar
     scripts = [
-        "/home/xel/bin/cpu-info-2.sh",
-        "/home/xel/bin/cpu-info-2.sh",
-        # "/ruta/a/tus/scripts/script2.sh",
-        # "/ruta/a/tus/scripts/script3.sh",
+        "/app/hello.sh param1 param2 param3 3",
     ]
 
     try:

@@ -13,13 +13,15 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Variables
-    HOST_PI = os.getenv("HOST_PI")
-    PASSWORD = os.getenv("REDIS_PASSWORD")
+    HOST_PI = os.getenv("HOST_PI", "0.0.0.0")
+    PASSWORD = os.getenv("REDIS_PASSWORD", "redisredis")
+    PORT_OUT = int(os.getenv("PORT_OUT", 6380))
+    TASKS_NAME = os.getenv("TASKS_NAME", 'tasks')
 
     # Configura la conexión a tu broker Redis con autenticación
-    app = Celery('tasks',
-                 broker=f'redis://:{PASSWORD}@{HOST_PI}:6379/0',
-                 backend=f'redis://:{PASSWORD}@{HOST_PI}:6379/0')
+    broker = f'redis://:{PASSWORD}@{HOST_PI}:{PORT_OUT}/0',
+    backend = f'redis://:{PASSWORD}@{HOST_PI}:{PORT_OUT}/0'
+    app = Celery(TASKS_NAME, broker=broker, backend=backend)
 
     # ID de la tarea
     task_id = sys.argv[1]

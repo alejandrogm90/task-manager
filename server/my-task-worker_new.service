@@ -1,0 +1,15 @@
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+User=xel
+Group=xel
+WorkingDirectory=/home/xel/Proyectos/task-manager/server
+#ExecStart=/usr/bin/celery -A run_worker worker --loglevel=info
+#ExecStart=/usr/bin/python3 -m celery -A run_worker worker --loglevel=info
+ExecStart=/usr/bin/python3 -m celery -A task worker --loglevel=info
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

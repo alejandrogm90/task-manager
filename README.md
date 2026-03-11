@@ -15,6 +15,7 @@ Simple manage of task using celerity and redis
 Frameworks and libraries used to bootstrap the project:
 
 - [![Python][python-shield]][python-url]
+- [![Docker][docker-shield]][docker-url]
 
 ## Getting Started
 
@@ -59,24 +60,35 @@ journalctl -u celery-worker -f
 ## Usage
 
 On terminal:
-
 ```shell
 pipenv run python manage.py runserver
 ```
 
 In server and client side:
-
 ```bash
 python -m pip install --upgrade pip
 python -m pip install celery redis
 ```
 
 ### Test REDIS
-
+Test connection:
+ - Using your own cli
 ```bash
 redis-cli -h 192.168.1.200 -p 6379
 ```
-
+#### Using the docker image to test it:
+ - Launch de docker image
+```bash
+make build
+```
+ - Launch one job
+```bash
+make app1
+```
+ - Check your task
+```bash
+make info tasks_id=ce4d1724-106c-4d83-9e46-6d7d9d4bb925
+```
 _For more examples, please refer to the [Documentation][wiki-url]_
 
 ## Contributing
@@ -109,6 +121,8 @@ Project Link: [project-url]
 [license-shield]: https://img.shields.io/github/license/alejandrogm90/task-manager.svg?style=for-the-badge
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [python-shield]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=white
+[docker-shield]: https://img.shields.io/badge/docker-000000?style=for-the-badge&logo=docker&logoColor=white
+
 [profile-url]: https://github.com/alejandrogm90
 [project-url]: https://github.com/alejandrogm90/task-manager/
 [wiki-url]: https://github.com/alejandrogm90/task-manager/wiki
@@ -119,3 +133,4 @@ Project Link: [project-url]
 [license-url]: https://github.com/alejandrogm90/task-manager/blob/master/LICENSE.txt
 [linkedin-url]: https://www.linkedin.com/in/alejandro-g-762869129/
 [python-url]: https://www.python.org/
+[docker-url]: https://www.docker.com/

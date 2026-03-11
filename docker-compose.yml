@@ -1,0 +1,9 @@
+version: '3.11'
+
+services:
+  task-manager-server-image:
+    build: .
+    volumes:
+      - ./app:/app
+    ports:
+      - "6380:6379"

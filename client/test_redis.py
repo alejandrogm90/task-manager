@@ -5,12 +5,17 @@ import redis
 
 if __name__ == "__main__":
     # Variables
-    HOST_PI = os.getenv("HOST_PI")
-    PASSWORD = os.getenv("REDIS_PASSWORD")
+    HOST_PI = os.getenv("HOST_PI", "0.0.0.0")
+    PASSWORD = os.getenv("REDIS_PASSWORD", "redisredis")
+    PORT_OUT = int(os.getenv("PORT_OUT", 6380))
 
     # Conectar a Redis
     client = redis.StrictRedis(
-        host=HOST_PI, port=6379, decode_responses=True, password=PASSWORD)
+        host=HOST_PI,
+        port=PORT_OUT,
+        password=PASSWORD,
+        decode_responses=True,
+    )
 
     try:
         if client.ping():
